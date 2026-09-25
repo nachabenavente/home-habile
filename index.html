@@ -1039,6 +1039,62 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--azul);outline-offse
   body.cta-activo .pie-bajo{padding-bottom:1rem}
 }
 
+
+/* ============================================================
+   NAVEGACIÓN AMPLIADA + MENÚ MÓVIL
+   ============================================================ */
+.header-inner{gap:1.25rem}
+.header .logo{flex-shrink:0}
+.nav .drop-toggle svg{flex-shrink:0;width:11px;height:7px}
+.header > .wrap.header-inner{max-width:84rem}
+.nav{gap:clamp(.85rem,1.3vw,1.4rem)}
+.nav > a,.nav .drop-toggle{font-size:.875rem;white-space:nowrap}
+.header-cta{flex-shrink:0;padding-inline:1.35rem}
+.nav-cta-movil{display:none}
+.menu-toggle{
+  display:none;appearance:none;background:none;border:0;cursor:pointer;
+  width:2.5rem;height:2.5rem;padding:.55rem;margin-left:.25rem;
+  flex-direction:column;justify-content:center;gap:5px;
+}
+.menu-toggle span{display:block;height:2px;border-radius:2px;background:var(--carbon);transition:transform .22s,opacity .22s}
+.menu-abierto .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-abierto .menu-toggle span:nth-child(2){opacity:0}
+.menu-abierto .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media(max-width:74.99rem){
+  .menu-toggle{display:flex}
+  .header-cta{display:none}
+  .nav{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:var(--warm-white);border-top:1px solid var(--carbon-15);
+    box-shadow:0 14px 30px rgba(42,42,39,.10);
+    padding:.5rem clamp(1.25rem,4vw,3rem) 1.5rem;max-height:calc(100vh - 5rem);overflow:auto;
+  }
+  .menu-abierto .nav{display:flex}
+  .nav > a,.nav .drop-toggle{
+    font-size:1rem;padding:.95rem 0;border-bottom:1px solid var(--carbon-15);
+    text-align:left;width:100%;
+  }
+  .nav .has-drop{display:block}
+  .nav .drop-toggle{display:flex;justify-content:space-between;align-items:center}
+  .nav .drop{position:static;box-shadow:none;border:0;padding:0 0 .5rem 1rem;background:none;min-width:0}
+  .nav .drop a{padding:.7rem 0}
+  .nav > a.nav-cta-movil{display:inline-flex;justify-content:center;margin-top:1.25rem;border-bottom:0;color:var(--warm-white);padding:.95rem 1rem}
+  body:has(.menu-abierto) .cta-movil{transform:translateY(105%)}
+}
+
+
+/* ---- Diagrama de la Esencia · versión equilibrada ---- */
+.esencia-diagrama{max-width:48rem}
+.esencia-diagrama .d-titulo{font-family:'Gabarito',system-ui,sans-serif;font-weight:700;font-size:21px}
+.esencia-diagrama .d-sub{font-family:'Libre Baskerville',Georgia,serif;font-style:italic;font-size:15px;fill:#4E4E49}
+.esencia-diagrama .d-centro{font-family:'Libre Baskerville',Georgia,serif;font-style:italic;font-size:19px;fill:#2A2A27}
+.esencia-diagrama-movil .d-titulo{font-family:'Gabarito',system-ui,sans-serif;font-weight:700;font-size:17px}
+.esencia-diagrama-movil .d-centro{font-family:'Libre Baskerville',Georgia,serif;font-style:italic;font-size:15.5px;fill:#2A2A27}
+
+
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
@@ -1238,12 +1294,52 @@ h4{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
 .tagline{font-size:clamp(1.1rem,2.1vw,1.3rem)}
 </style>
 
+<style>
+/* ============================================================
+   CURSIVA SOLO PARA CITAS, FRASES DEL DIAGRAMA Y TAGLINE
+   Entradillas y cierres pasan a redonda, conservando el tamaño
+   algo mayor que el cuerpo para mantener la jerarquía.
+   ============================================================ */
+.hero-lead,.inst-lead,.proceso-lead,.lineas-lead,.modalidades-lead,
+.equipo-lead,.cierre-texto,.situaciones-lead{font-style:normal}
+.etimologia,.foto-pie{
+  font-family:'Gabarito',system-ui,sans-serif;font-style:normal;
+  font-size:.8125rem;letter-spacing:.01em;color:var(--gris);
+}
+
+</style>
+<style>
+/* ============================================================
+   RAZONES DE CONSULTA · LISTA EDITORIAL SIN CAJAS
+   Se lee como frases que la persona reconoce, no como tarjetas,
+   y se distingue de las tarjetas de servicios de más abajo.
+   ============================================================ */
+.razones .lista-razones{
+  display:grid !important;grid-template-columns:1fr;gap:0 clamp(2rem,5vw,4.5rem);
+  max-width:none;margin-top:clamp(2rem,4vw,2.75rem);
+  border-bottom:1px solid var(--carbon-15);
+}
+@media(min-width:48rem){.razones .lista-razones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.razones .razon{
+  flex:none;background:none !important;border:0 !important;border-radius:0;
+  border-top:1px solid var(--carbon-15) !important;
+  min-height:0;display:block;position:relative;
+  padding:1.15rem 0 1.15rem 1.9rem;
+  font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(1rem,1.5vw,1.0625rem);
+  line-height:1.6;color:var(--carbon);
+}
+.razones .razon::before{
+  content:'';position:absolute;left:.15rem;top:1.72rem;
+  width:.55rem;height:.55rem;border-radius:50%;background:var(--acc);
+}
+#page-coaching .razones .razon::before{background:var(--carbon)}
+</style>
 </head>
 <body>
 
 <div class="linea-marca"></div>
 
-<header class="header">
+<header class="header site-header">
   <div class="wrap header-inner">
     <a href="#" class="logo" data-page="home" aria-label="Habilé, inicio"><svg class="logo-svg" role="img" aria-label="Habilé" width="570" height="353" viewBox="0 0 570 353" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M125.1 191.093C93.6978 191.097 53.9378 176.085 1.30049 134.804C-0.175508 133.646 -0.43284 131.512 0.724493 130.036C1.88183 128.558 4.01515 128.301 5.49382 129.458C62.1672 173.906 107.931 191.038 145.392 181.833C177.875 173.852 200.324 146.881 220.13 123.086C249.454 87.8555 277.151 54.5808 327.888 96.3275C362.89 125.128 398.004 137.006 432.254 131.633C462.243 126.928 486.176 109.596 500.974 95.8835C517.138 80.9035 526.246 66.8448 526.336 66.7048C527.35 65.1275 529.451 64.6688 531.029 65.6822C532.607 66.6942 533.066 68.7942 532.054 70.3728C531.671 70.9702 522.487 85.1715 505.747 100.72C490.24 115.124 465.094 133.341 433.358 138.336C397.095 144.042 360.155 131.673 323.572 101.573C278.051 64.1168 254.794 92.0582 225.35 127.432C200.671 157.082 172.355 191.088 125.1 191.093Z" fill="#0F3CC1"/>
@@ -1261,24 +1357,27 @@ h4{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
 <path d="M545.473 235.652H550.362C551.78 235.652 552.834 235.353 553.526 234.757C554.22 234.16 554.565 233.34 554.565 232.296C554.565 231.337 554.224 230.563 553.542 229.972C552.861 229.38 551.908 229.084 550.682 229.084H545.473V235.652ZM558.544 247.764H554.389L551.002 238.8H545.473V247.764H541.542V225.952H551.002C553.633 225.952 555.566 226.547 556.802 227.735C558.038 228.923 558.656 230.459 558.656 232.344C558.656 235.147 557.346 237.075 554.725 238.129L558.544 247.764Z" fill="black"/>
 <path d="M549.556 218.586C539.481 218.586 531.284 226.784 531.284 236.858C531.284 246.933 539.481 255.13 549.556 255.13C559.63 255.13 567.828 246.933 567.828 236.858C567.828 226.784 559.63 218.586 549.556 218.586ZM549.556 257.312C538.277 257.312 529.102 248.137 529.102 236.858C529.102 225.58 538.277 216.405 549.556 216.405C560.834 216.405 570.009 225.58 570.009 236.858C570.009 248.137 560.834 257.312 549.556 257.312Z" fill="black"/>
 </svg></a>
-    <nav class="nav" aria-label="Navegación principal">
-      <a href="#" data-page="esencia" class="nav-link">La Esencia Habilé</a>
+    <nav class="nav" aria-label="Navegación principal" id="nav-principal">
+      <a href="#" data-page="home">Inicio</a>
+      <a href="#" data-page="terapia">Terapia psicológica</a>
+      <a href="#" data-page="coaching">Coaching ontológico</a>
       <span class="has-drop">
-        <button class="drop-toggle" type="button" aria-expanded="false">Cómo acompañamos
+        <button class="drop-toggle" type="button" aria-expanded="false">Otros servicios
           <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <span class="drop">
-          <a href="#" data-page="terapia">Terapia psicológica</a>
           <a href="#" data-page="psicopedagogia">Psicopedagogía</a>
           <a href="#" data-page="evaluaciones">Evaluaciones</a>
-          <a href="#" data-page="coaching">Coaching ontológico</a>
         </span>
       </span>
       <a href="#" data-page="sobre">Sobre Habilé</a>
+      <a href="#" data-page="esencia">La Esencia Habilé</a>
       <a href="#" data-page="instituciones">Instituciones</a>
       <a href="#">Blog</a>
+      <a href="mailto:contacto@habileperu.com" class="cta nav-cta-movil">Conversemos</a>
     </nav>
-    <a href="https://wa.me/51949730355?text=Hola,%20me%20gustar%C3%ADa%20coordinar%20una%20primera%20conversaci%C3%B3n." class="cta header-cta" target="_blank" rel="noopener">Conversemos</a>
+    <a href="mailto:contacto@habileperu.com" class="cta header-cta">Conversemos</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-principal" aria-label="Abrir menú"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -1294,20 +1393,7 @@ h4{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
   </div>
 </section>
 
-<section class="situaciones">
-  <div class="wrap">
-    <h2>¿Qué te trae hasta aquí?</h2>
-    <p class="situaciones-lead">No hace falta que sepas con certeza qué necesitas. Empieza por lo que reconoces.</p>
-    <div class="grid-situaciones">
-      <a class="situacion" href="#" data-page="terapia"><span>A mi hijo o hija le está pasando algo</span><em>Terapia psicológica →</em></a>
-      <a class="situacion" href="#" data-page="psicopedagogia"><span>A mi hijo o hija le cuesta aprender</span><em>Psicopedagogía →</em></a>
-      <a class="situacion" href="#" data-page="evaluaciones"><span>Creo que mi hijo o hija necesita una evaluación</span><em>Evaluaciones →</em></a>
-      <a class="situacion" href="#" data-page="terapia"><span>Estoy atravesando un momento difícil</span><em>Terapia psicológica →</em></a>
-      <a class="situacion" href="#" data-page="terapia"><span>Algo entre nosotros como pareja o familia no funciona</span><em>Terapia psicológica →</em></a>
-      <a class="situacion" href="#" data-page="coaching"><span>Quiero conocerme, crecer y decidir distinto hacia adelante</span><em>Coaching ontológico →</em></a>
-    </div>
-  </div>
-</section>
+
 
 <section class="conviccion">
   <div class="wrap dos-col">
@@ -1338,43 +1424,38 @@ h4{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
       <p class="proceso-lead">En Habilé no aplicamos un tratamiento estándar. Miramos tu situación completa, trabajamos con las personas que te rodean y elegimos los enfoques que a ti te sirven. Y te explicamos en qué consiste tu proceso antes de empezar.</p>
     </div>
     <div class="esencia-diagrama">
-  <svg viewBox="0 0 760 620" role="img" aria-labelledby="tituloA">
-    <title id="tituloA">La persona y su capacidad en el centro, rodeada por tres elementos: el vínculo, la mirada y los enfoques diversos.</title>
+  <svg viewBox="-20 0 840 500" role="img" aria-labelledby="tituloA">
+    <title id="tituloA">La persona y sus potencialidades en el centro, rodeada por tres elementos: el vínculo, la mirada periférica y los enfoques diversos.</title>
+    <path d="M 514.9,188.6 A 150,150 0 0 0 285.1,188.6" fill="none" stroke="#FF921E" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 259.0,233.7 A 150,150 0 0 0 374.0,432.7" fill="none" stroke="#39B44A" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 426.0,432.7 A 150,150 0 0 0 541.0,233.7" fill="none" stroke="#0F3CC1" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="400" cy="285" r="100" fill="#FFC304"/>
+    <text class="d-centro" x="400" y="279" text-anchor="middle">la persona y</text>
+    <text class="d-centro" x="400" y="305" text-anchor="middle">sus potencialidades</text>
 
-    <!-- arcos -->
-    <path d="M 512,232 A 152,152 0 0 0 248,232" fill="none" stroke="#FF921E" stroke-width="9" stroke-linecap="round" opacity=".92"/>
-    <path d="M 234,255 A 152,152 0 0 0 356,470" fill="none" stroke="#39B44A" stroke-width="9" stroke-linecap="round" opacity=".92"/>
-    <path d="M 404,470 A 152,152 0 0 0 526,255" fill="none" stroke="#0F3CC1" stroke-width="9" stroke-linecap="round" opacity=".9"/>
+    <text class="d-titulo" x="400" y="62" text-anchor="middle" fill="#E07A0B">Mirada periférica</text>
+    <text class="d-sub" x="400" y="88" text-anchor="middle">involucra a la persona</text>
+    <text class="d-sub" x="400" y="108" text-anchor="middle">en su totalidad</text>
 
-    <!-- centro -->
-    <circle cx="380" cy="330" r="92" fill="#FFC304"/>
-    <text class="d-centro" x="380" y="320" text-anchor="middle">la persona</text>
-    <text class="d-centro" x="380" y="350" text-anchor="middle">y su capacidad</text>
+    <text class="d-titulo" x="222" y="418" text-anchor="end" fill="#2E9A3E">El vínculo</text>
+    <text class="d-sub" x="222" y="444" text-anchor="end">trabajo integral</text>
+    <text class="d-sub" x="222" y="464" text-anchor="end">con la familia</text>
 
-    <!-- etiquetas -->
-    <text class="d-titulo" x="380" y="96" text-anchor="middle" fill="#FF921E">La mirada</text>
-    <text class="d-sub" x="380" y="124" text-anchor="middle">interrelación entre lo emocional</text>
-    <text class="d-sub" x="380" y="144" text-anchor="middle">y lo psicopedagógico</text>
-
-    <text class="d-titulo" x="176" y="322" text-anchor="end" fill="#39B44A">El vínculo</text>
-    <text class="d-sub" x="176" y="350" text-anchor="end">trabajo integral</text>
-    <text class="d-sub" x="176" y="370" text-anchor="end">con la familia</text>
-
-    <text class="d-titulo" x="584" y="322" fill="#0F3CC1">Enfoques diversos</text>
-    <text class="d-sub" x="584" y="350">la estrategia se diseña</text>
-    <text class="d-sub" x="584" y="370">para cada persona</text>
+    <text class="d-titulo" x="578" y="418" fill="#0F3CC1">Enfoques diversos</text>
+    <text class="d-sub" x="578" y="444">la estrategia se diseña</text>
+    <text class="d-sub" x="578" y="464">para cada persona</text>
   </svg>
 </div><div class="esencia-diagrama-movil">
-  <svg viewBox="0 0 380 400" role="img" aria-hidden="true">
-    <path d="M 296,150 A 108,108 0 0 0 84,150" fill="none" stroke="#FF921E" stroke-width="8" stroke-linecap="round" opacity=".92"/>
-    <path d="M 74,168 A 108,108 0 0 0 158,320" fill="none" stroke="#39B44A" stroke-width="8" stroke-linecap="round" opacity=".92"/>
-    <path d="M 196,320 A 108,108 0 0 0 280,168" fill="none" stroke="#0F3CC1" stroke-width="8" stroke-linecap="round" opacity=".9"/>
-    <circle cx="190" cy="222" r="66" fill="#FFC304"/>
-    <text class="d-centro" x="190" y="215" text-anchor="middle">la persona</text>
-    <text class="d-centro" x="190" y="240" text-anchor="middle">y su capacidad</text>
-    <text class="d-titulo" x="190" y="60" text-anchor="middle" fill="#FF921E">La mirada</text>
-    <text class="d-titulo" x="96" y="372" text-anchor="middle" fill="#39B44A">El vínculo</text>
-    <text class="d-titulo" x="286" y="372" text-anchor="middle" fill="#0F3CC1">Enfoques</text>
+  <svg viewBox="0 0 400 390" role="img" aria-hidden="true">
+    <path d="M 279.7,133.2 A 104,104 0 0 0 120.3,133.2" fill="none" stroke="#FF921E" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 102.3,164.4 A 104,104 0 0 0 181.9,302.4" fill="none" stroke="#39B44A" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 218.1,302.4 A 104,104 0 0 0 297.7,164.4" fill="none" stroke="#0F3CC1" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="200" cy="200" r="80" fill="#FFC304"/>
+    <text class="d-centro" x="200" y="194" text-anchor="middle">la persona y</text>
+    <text class="d-centro" x="200" y="216" text-anchor="middle">sus potencialidades</text>
+    <text class="d-titulo" x="200" y="62" text-anchor="middle" fill="#E07A0B">Mirada periférica</text>
+    <text class="d-titulo" x="92" y="355" text-anchor="middle" fill="#2E9A3E">El vínculo</text>
+    <text class="d-titulo" x="308" y="355" text-anchor="middle" fill="#0F3CC1">Enfoques diversos</text>
   </svg>
 </div>
     <div class="grid-esencia-home">
@@ -1497,43 +1578,38 @@ h4{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
       <p class="proceso-lead">Todo lo que hacemos gira en torno a la persona y en habilitar su capacidad. Alrededor de ella, tres elementos presentes en cada proceso.</p>
     </div>
     <div class="esencia-diagrama">
-  <svg viewBox="0 0 760 620" role="img" aria-labelledby="tituloA">
-    <title id="tituloA">La persona y su capacidad en el centro, rodeada por tres elementos: el vínculo, la mirada y los enfoques diversos.</title>
+  <svg viewBox="-20 0 840 500" role="img" aria-labelledby="tituloA">
+    <title id="tituloA">La persona y sus potencialidades en el centro, rodeada por tres elementos: el vínculo, la mirada periférica y los enfoques diversos.</title>
+    <path d="M 514.9,188.6 A 150,150 0 0 0 285.1,188.6" fill="none" stroke="#FF921E" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 259.0,233.7 A 150,150 0 0 0 374.0,432.7" fill="none" stroke="#39B44A" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 426.0,432.7 A 150,150 0 0 0 541.0,233.7" fill="none" stroke="#0F3CC1" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="400" cy="285" r="100" fill="#FFC304"/>
+    <text class="d-centro" x="400" y="279" text-anchor="middle">la persona y</text>
+    <text class="d-centro" x="400" y="305" text-anchor="middle">sus potencialidades</text>
 
-    <!-- arcos -->
-    <path d="M 512,232 A 152,152 0 0 0 248,232" fill="none" stroke="#FF921E" stroke-width="9" stroke-linecap="round" opacity=".92"/>
-    <path d="M 234,255 A 152,152 0 0 0 356,470" fill="none" stroke="#39B44A" stroke-width="9" stroke-linecap="round" opacity=".92"/>
-    <path d="M 404,470 A 152,152 0 0 0 526,255" fill="none" stroke="#0F3CC1" stroke-width="9" stroke-linecap="round" opacity=".9"/>
+    <text class="d-titulo" x="400" y="62" text-anchor="middle" fill="#E07A0B">Mirada periférica</text>
+    <text class="d-sub" x="400" y="88" text-anchor="middle">involucra a la persona</text>
+    <text class="d-sub" x="400" y="108" text-anchor="middle">en su totalidad</text>
 
-    <!-- centro -->
-    <circle cx="380" cy="330" r="92" fill="#FFC304"/>
-    <text class="d-centro" x="380" y="320" text-anchor="middle">la persona</text>
-    <text class="d-centro" x="380" y="350" text-anchor="middle">y su capacidad</text>
+    <text class="d-titulo" x="222" y="418" text-anchor="end" fill="#2E9A3E">El vínculo</text>
+    <text class="d-sub" x="222" y="444" text-anchor="end">trabajo integral</text>
+    <text class="d-sub" x="222" y="464" text-anchor="end">con la familia</text>
 
-    <!-- etiquetas -->
-    <text class="d-titulo" x="380" y="96" text-anchor="middle" fill="#FF921E">La mirada</text>
-    <text class="d-sub" x="380" y="124" text-anchor="middle">interrelación entre lo emocional</text>
-    <text class="d-sub" x="380" y="144" text-anchor="middle">y lo psicopedagógico</text>
-
-    <text class="d-titulo" x="176" y="322" text-anchor="end" fill="#39B44A">El vínculo</text>
-    <text class="d-sub" x="176" y="350" text-anchor="end">trabajo integral</text>
-    <text class="d-sub" x="176" y="370" text-anchor="end">con la familia</text>
-
-    <text class="d-titulo" x="584" y="322" fill="#0F3CC1">Enfoques diversos</text>
-    <text class="d-sub" x="584" y="350">la estrategia se diseña</text>
-    <text class="d-sub" x="584" y="370">para cada persona</text>
+    <text class="d-titulo" x="578" y="418" fill="#0F3CC1">Enfoques diversos</text>
+    <text class="d-sub" x="578" y="444">la estrategia se diseña</text>
+    <text class="d-sub" x="578" y="464">para cada persona</text>
   </svg>
 </div><div class="esencia-diagrama-movil">
-  <svg viewBox="0 0 380 400" role="img" aria-hidden="true">
-    <path d="M 296,150 A 108,108 0 0 0 84,150" fill="none" stroke="#FF921E" stroke-width="8" stroke-linecap="round" opacity=".92"/>
-    <path d="M 74,168 A 108,108 0 0 0 158,320" fill="none" stroke="#39B44A" stroke-width="8" stroke-linecap="round" opacity=".92"/>
-    <path d="M 196,320 A 108,108 0 0 0 280,168" fill="none" stroke="#0F3CC1" stroke-width="8" stroke-linecap="round" opacity=".9"/>
-    <circle cx="190" cy="222" r="66" fill="#FFC304"/>
-    <text class="d-centro" x="190" y="215" text-anchor="middle">la persona</text>
-    <text class="d-centro" x="190" y="240" text-anchor="middle">y su capacidad</text>
-    <text class="d-titulo" x="190" y="60" text-anchor="middle" fill="#FF921E">La mirada</text>
-    <text class="d-titulo" x="96" y="372" text-anchor="middle" fill="#39B44A">El vínculo</text>
-    <text class="d-titulo" x="286" y="372" text-anchor="middle" fill="#0F3CC1">Enfoques</text>
+  <svg viewBox="0 0 400 390" role="img" aria-hidden="true">
+    <path d="M 279.7,133.2 A 104,104 0 0 0 120.3,133.2" fill="none" stroke="#FF921E" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 102.3,164.4 A 104,104 0 0 0 181.9,302.4" fill="none" stroke="#39B44A" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 218.1,302.4 A 104,104 0 0 0 297.7,164.4" fill="none" stroke="#0F3CC1" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="200" cy="200" r="80" fill="#FFC304"/>
+    <text class="d-centro" x="200" y="194" text-anchor="middle">la persona y</text>
+    <text class="d-centro" x="200" y="216" text-anchor="middle">sus potencialidades</text>
+    <text class="d-titulo" x="200" y="62" text-anchor="middle" fill="#E07A0B">Mirada periférica</text>
+    <text class="d-titulo" x="92" y="355" text-anchor="middle" fill="#2E9A3E">El vínculo</text>
+    <text class="d-titulo" x="308" y="355" text-anchor="middle" fill="#0F3CC1">Enfoques diversos</text>
   </svg>
 </div>
     <div class="grid-elementos">
@@ -1606,6 +1682,10 @@ h4{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
       <div class="razon">Quieres acompañar mejor a tu hijo o hija.</div>
       <div class="razon">Estás pasando por una pérdida o duelo que te afecta hoy.</div>
       <div class="razon">Necesitas ayuda en tu relación con la alimentación.</div>
+      <div class="razon" data-pendiente="texto del cliente">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</div>
+      <div class="razon" data-pendiente="texto del cliente">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
+      <div class="razon" data-pendiente="texto del cliente">Duis aute irure dolor in reprehenderit in voluptate velit esse.</div>
+      <div class="razon" data-pendiente="texto del cliente">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</div>
     </div>
   </div>
 </section>
@@ -2325,7 +2405,19 @@ h4{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
     window.scrollTo({top:0,behavior:'instant'});
     revisar();
   }
+  var header = document.querySelector('.header');
   document.addEventListener('click', function(e){
+    var mt = e.target.closest('.menu-toggle');
+    if(mt){
+      var abierto = header.classList.toggle('menu-abierto');
+      mt.setAttribute('aria-expanded', abierto);
+      mt.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+      return;
+    }
+    if(e.target.closest('.nav [data-page], .nav a[href^="mailto"]')){
+      header.classList.remove('menu-abierto');
+      document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+    }
     var t = e.target.closest('.drop-toggle');
     if(t){
       var w = t.closest('.has-drop');
